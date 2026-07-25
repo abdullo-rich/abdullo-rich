@@ -110,19 +110,28 @@ def collect_stats():
     }
 
 
+# Стили заданы атрибутами, а не CSS-блоком: GitHub прогоняет картинки через
+# свой прокси и может вырезать <style>, тогда карточка станет нечитаемой.
+FONT = "'Segoe UI', Ubuntu, Helvetica, sans-serif"
+
+
+def text_el(x, y, content, size, color, weight=400, anchor="start"):
+    """Текстовый элемент с явными атрибутами оформления."""
+    return (
+        f'  <text x="{x}" y="{y}" font-family="{FONT}" font-size="{size}" '
+        f'font-weight="{weight}" fill="{color}" text-anchor="{anchor}">{esc(content)}</text>\n'
+    )
+
+
 def frame(width, height, title):
     """Общая рамка карточки с заголовком."""
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img">
-  <style>
-    .t {{ font: 600 17px 'Segoe UI', Ubuntu, sans-serif; fill: {GREEN}; }}
-    .l {{ font: 400 13px 'Segoe UI', Ubuntu, sans-serif; fill: {TEXT}; }}
-    .v {{ font: 600 13px 'Segoe UI', Ubuntu, sans-serif; fill: {GREEN}; }}
-    .d {{ font: 400 11px 'Segoe UI', Ubuntu, sans-serif; fill: {DIM}; }}
-  </style>
-  <rect x="0.5" y="0.5" width="{width - 1}" height="{height - 1}" rx="10"
-        fill="{BG}" stroke="{BORDER}" stroke-width="1"/>
-  <text x="22" y="34" class="t">{esc(title)}</text>
-"""
+    return (
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
+        f'viewBox="0 0 {width} {height}" role="img" aria-label="{esc(title)}">\n'
+        f'  <rect x="0.5" y="0.5" width="{width - 1}" height="{height - 1}" rx="10" '
+        f'fill="{BG}" stroke="{BORDER}" stroke-width="1"/>\n'
+        + text_el(22, 34, title, 17, GREEN, 600)
+    )
 
 
 def render_languages(langs):
@@ -154,11 +163,11 @@ def render_languages(langs):
         share = size / total * 100
         color = LANG_COLORS.get(lang, FALLBACK_COLORS[index % len(FALLBACK_COLORS)])
         parts.append(f'  <rect x="22" y="{y - 10}" width="11" height="11" rx="2" fill="{color}"/>\n')
-        parts.append(f'  <text x="42" y="{y}" class="l">{esc(lang)}</text>\n')
-        parts.append(f'  <text x="185" y="{y}" class="v" text-anchor="end">{share:.1f}%</text>\n')
+        parts.append(text_el(42, y, lang, 13, TEXT))
+        parts.append(text_el(185, y, f"{share:.1f}%", 13, GREEN, 600, "end"))
         y += 26
 
-    parts.append(f'  <text x="22" y="{height - 16}" class="d">по всем репозиториям, включая приватные</text>\n')
+    parts.append(text_el(22, height - 16, "по всем репозиториям, включая приватные", 11, DIM))
     parts.append("</svg>\n")
     return "".join(parts)
 
@@ -170,15 +179,15 @@ def render_stats(stats):
 
     y = 78
     for label, value in stats.items():
-        parts.append(f'  <text x="22" y="{y}" class="l">{esc(label)}</text>\n')
-        parts.append(f'  <text x="{width - 22}" y="{y}" class="v" text-anchor="end">{value}</text>\n')
+        parts.append(text_el(22, y, label, 13, TEXT))
+        parts.append(text_el(width - 22, y, value, 13, GREEN, 600, "end"))
         parts.append(
             f'  <line x1="22" y1="{y + 9}" x2="{width - 22}" y2="{y + 9}" '
             f'stroke="{BORDER}" stroke-width="1" opacity="0.4"/>\n'
         )
         y += 28
 
-    parts.append(f'  <text x="22" y="{height - 16}" class="d">данные обновляются автоматически</text>\n')
+    parts.append(text_el(22, height - 16, "включая приватные репозитории", 11, DIM))
     parts.append("</svg>\n")
     return "".join(parts)
 

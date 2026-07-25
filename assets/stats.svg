@@ -1,27 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="230" viewBox="0 0 400 230" role="img">
-  <style>
-    .t { font: 600 17px 'Segoe UI', Ubuntu, sans-serif; fill: #39ff14; }
-    .l { font: 400 13px 'Segoe UI', Ubuntu, sans-serif; fill: #c9d1d9; }
-    .v { font: 600 13px 'Segoe UI', Ubuntu, sans-serif; fill: #39ff14; }
-    .d { font: 400 11px 'Segoe UI', Ubuntu, sans-serif; fill: #8b949e; }
-  </style>
-  <rect x="0.5" y="0.5" width="399" height="229" rx="10"
-        fill="#0d1117" stroke="#1f6f2f" stroke-width="1"/>
-  <text x="22" y="34" class="t">Статистика</text>
-  <text x="22" y="78" class="l">Репозиториев</text>
-  <text x="378" y="78" class="v" text-anchor="end">5</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="230" viewBox="0 0 400 230" role="img" aria-label="Статистика">
+  <rect x="0.5" y="0.5" width="399" height="229" rx="10" fill="#0d1117" stroke="#1f6f2f" stroke-width="1"/>
+  <text x="22" y="34" font-family="'Segoe UI', Ubuntu, Helvetica, sans-serif" font-size="17" font-weight="600" fill="#39ff14" text-anchor="start">Статистика</text>
+  <text x="22" y="78" font-family="'Segoe UI', Ubuntu, Helvetica, sans-serif" font-size="13" font-weight="400" fill="#c9d1d9" text-anchor="start">Репозиториев</text>
+  <text x="378" y="78" font-family="'Segoe UI', Ubuntu, Helvetica, sans-serif" font-size="13" font-weight="600" fill="#39ff14" text-anchor="end">5</text>
   <line x1="22" y1="87" x2="378" y2="87" stroke="#1f6f2f" stroke-width="1" opacity="0.4"/>
-  <text x="22" y="106" class="l">Коммитов за год</text>
-  <text x="378" y="106" class="v" text-anchor="end">6</text>
+  <text x="22" y="106" font-family="'Segoe UI', Ubuntu, Helvetica, sans-serif" font-size="13" font-weight="400" fill="#c9d1d9" text-anchor="start">Коммитов за год</text>
+  <text x="378" y="106" font-family="'Segoe UI', Ubuntu, Helvetica, sans-serif" font-size="13" font-weight="600" fill="#39ff14" text-anchor="end">8</text>
   <line x1="22" y1="115" x2="378" y2="115" stroke="#1f6f2f" stroke-width="1" opacity="0.4"/>
-  <text x="22" y="134" class="l">Pull request'ов</text>
-  <text x="378" y="134" class="v" text-anchor="end">0</text>
+  <text x="22" y="134" font-family="'Segoe UI', Ubuntu, Helvetica, sans-serif" font-size="13" font-weight="400" fill="#c9d1d9" text-anchor="start">Pull request'ов</text>
+  <text x="378" y="134" font-family="'Segoe UI', Ubuntu, Helvetica, sans-serif" font-size="13" font-weight="600" fill="#39ff14" text-anchor="end">0</text>
   <line x1="22" y1="143" x2="378" y2="143" stroke="#1f6f2f" stroke-width="1" opacity="0.4"/>
-  <text x="22" y="162" class="l">Issues</text>
-  <text x="378" y="162" class="v" text-anchor="end">0</text>
+  <text x="22" y="162" font-family="'Segoe UI', Ubuntu, Helvetica, sans-serif" font-size="13" font-weight="400" fill="#c9d1d9" text-anchor="start">Issues</text>
+  <text x="378" y="162" font-family="'Segoe UI', Ubuntu, Helvetica, sans-serif" font-size="13" font-weight="600" fill="#39ff14" text-anchor="end">0</text>
   <line x1="22" y1="171" x2="378" y2="171" stroke="#1f6f2f" stroke-width="1" opacity="0.4"/>
-  <text x="22" y="190" class="l">Подписчиков</text>
-  <text x="378" y="190" class="v" text-anchor="end">0</text>
+  <text x="22" y="190" font-family="'Segoe UI', Ubuntu, Helvetica, sans-serif" font-size="13" font-weight="400" fill="#c9d1d9" text-anchor="start">Подписчиков</text>
+  <text x="378" y="190" font-family="'Segoe UI', Ubuntu, Helvetica, sans-serif" font-size="13" font-weight="600" fill="#39ff14" text-anchor="end">0</text>
   <line x1="22" y1="199" x2="378" y2="199" stroke="#1f6f2f" stroke-width="1" opacity="0.4"/>
-  <text x="22" y="214" class="d">данные обновляются автоматически</text>
+  <text x="22" y="214" font-family="'Segoe UI', Ubuntu, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#8b949e" text-anchor="start">включая приватные репозитории</text>
 </svg>
