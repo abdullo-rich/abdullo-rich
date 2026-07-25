@@ -60,8 +60,7 @@
 
 ### `> СТАТИСТИКА`
 
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=abdullo-rich&show_icons=true&hide_border=true&count_private=true&include_all_commits=true&locale=ru&bg_color=0d1117&title_color=39ff14&icon_color=39ff14&text_color=c9d1d9&border_color=39ff14" alt="статистика" />
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=abdullo-rich&layout=compact&hide_border=true&langs_count=8&locale=ru&bg_color=0d1117&title_color=39ff14&text_color=c9d1d9&border_color=39ff14" alt="языки" />
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=abdullo-rich&theme=github_dark&color=39ff14&text_color=c9d1d9&title_color=39ff14" alt="профиль" width="88%" />
 
 <br/><br/>
 
@@ -69,12 +68,18 @@
 
 </div>
 
-<!-- ======================= TROPHIES ======================= -->
+<!-- ======================= LANGUAGES ======================= -->
 <div align="center">
 
-### `> ДОСТИЖЕНИЯ`
+### `> ЯЗЫКИ`
 
-<img src="https://github-profile-trophy.vercel.app/?username=abdullo-rich&theme=matrix&no-frame=true&no-bg=true&column=7&margin-w=6&margin-h=6" alt="трофеи" />
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=abdullo-rich&theme=github_dark&color=39ff14&text_color=c9d1d9&title_color=39ff14" alt="языки по репозиториям" />
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=abdullo-rich&theme=github_dark&color=39ff14&text_color=c9d1d9&title_color=39ff14" alt="языки по коммитам" />
+
+<br/><br/>
+
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=abdullo-rich&theme=github_dark&color=39ff14&text_color=c9d1d9&title_color=39ff14" alt="статистика" />
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=abdullo-rich&theme=github_dark&color=39ff14&text_color=c9d1d9&title_color=39ff14&utcOffset=3" alt="продуктивное время" />
 
 </div>
 
