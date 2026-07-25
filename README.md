@@ -17,7 +17,8 @@
 
 <br/>
 
-<img src="https://komarev.com/ghpvc/?username=abdullo-rich&label=%D0%9F%D0%9E%D0%A1%D0%95%D0%A2%D0%98%D0%A2%D0%95%D0%9B%D0%98&color=39ff14&style=flat-square" alt="просмотры профиля" />
+<!-- пробелы в label обязательны: komarev считает ширину кириллицы заниженной и обрезает текст -->
+<img src="https://komarev.com/ghpvc/?username=abdullo-rich&label=%20%20%20%20%20%20%D0%9F%D0%9E%D0%A1%D0%95%D0%A2%D0%98%D0%A2%D0%95%D0%9B%D0%98%20%20%20%20%20%20&color=39ff14&style=flat-square" alt="просмотры профиля" />
 <img src="https://img.shields.io/github/followers/abdullo-rich?label=%D0%9F%D0%9E%D0%94%D0%9F%D0%98%D0%A1%D0%A7%D0%98%D0%9A%D0%98&style=flat-square&color=39ff14&labelColor=0d1117" alt="подписчики" />
 
 </div>
