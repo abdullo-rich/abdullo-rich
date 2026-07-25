@@ -1,0 +1,201 @@
+"""Генератор SVG-карточек для профиля.
+
+Тянет свежие данные через gh CLI (видит и приватные репозитории)
+и рисует две карточки на русском в зелёной терминальной гамме.
+
+Запуск:  python scripts/gen_cards.py
+"""
+
+import json
+import math
+import subprocess
+from pathlib import Path
+
+USER = "abdullo-rich"
+GH = r"C:\Users\SmartSystem\gh-cli\bin\gh.exe"
+OUT_DIR = Path(__file__).resolve().parent.parent / "assets"
+
+# Репозитории, которые не отражают собственный код (скопированные upstream-проекты).
+EXCLUDED_REPOS = {"my-astrbot"}
+
+BG = "#0d1117"
+GREEN = "#39ff14"
+TEXT = "#c9d1d9"
+DIM = "#8b949e"
+BORDER = "#1f6f2f"
+
+# Цвета языков (как в GitHub Linguist)
+LANG_COLORS = {
+    "Python": "#3572A5",
+    "JavaScript": "#f1e05a",
+    "TypeScript": "#3178c6",
+    "HTML": "#e34c26",
+    "CSS": "#563d7c",
+    "PowerShell": "#5391FE",  # светлее оригинального #012456 — тот не виден на тёмном фоне
+    "Batchfile": "#C1F12E",
+    "Shell": "#89e051",
+    "Vue": "#41b883",
+    "Kotlin": "#A97BFF",
+    "Java": "#b07219",
+    "Dockerfile": "#384d54",
+}
+FALLBACK_COLORS = ["#39ff14", "#2dde98", "#00b8d4", "#ffb86c", "#ff79c6"]
+
+
+def gh_json(*args):
+    """Вызвать gh и разобрать JSON-ответ."""
+    result = subprocess.run(
+        [GH, *args], capture_output=True, text=True, encoding="utf-8"
+    )
+    if result.returncode != 0:
+        raise RuntimeError(f"gh {' '.join(args)} -> {result.stderr.strip()}")
+    return json.loads(result.stdout)
+
+
+def esc(text):
+    """Экранировать спецсимволы XML."""
+    return (
+        str(text)
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+    )
+
+
+def collect_languages():
+    """Собрать байты по языкам из всех значимых репозиториев."""
+    repos = gh_json("repo", "list", USER, "--limit", "100", "--json", "name")
+    totals = {}
+    for repo in repos:
+        name = repo["name"]
+        if name in EXCLUDED_REPOS or name == USER:
+            continue
+        try:
+            langs = gh_json("api", f"repos/{USER}/{name}/languages")
+        except RuntimeError:
+            continue
+        for lang, size in langs.items():
+            totals[lang] = totals.get(lang, 0) + size
+    return dict(sorted(totals.items(), key=lambda kv: kv[1], reverse=True))
+
+
+def collect_stats():
+    """Собрать сводные показатели профиля."""
+    query = """
+    {
+      user(login: "%s") {
+        followers { totalCount }
+        repositories(ownerAffiliations: OWNER) { totalCount }
+        contributionsCollection {
+          totalCommitContributions
+          restrictedContributionsCount
+          totalPullRequestContributions
+          totalIssueContributions
+        }
+      }
+    }
+    """ % USER
+    data = gh_json("api", "graphql", "-f", f"query={query}")["data"]["user"]
+    contrib = data["contributionsCollection"]
+    commits = (
+        contrib["totalCommitContributions"]
+        + contrib["restrictedContributionsCount"]
+    )
+    return {
+        "Репозиториев": data["repositories"]["totalCount"],
+        "Коммитов за год": commits,
+        "Pull request'ов": contrib["totalPullRequestContributions"],
+        "Issues": contrib["totalIssueContributions"],
+        "Подписчиков": data["followers"]["totalCount"],
+    }
+
+
+def frame(width, height, title):
+    """Общая рамка карточки с заголовком."""
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img">
+  <style>
+    .t {{ font: 600 17px 'Segoe UI', Ubuntu, sans-serif; fill: {GREEN}; }}
+    .l {{ font: 400 13px 'Segoe UI', Ubuntu, sans-serif; fill: {TEXT}; }}
+    .v {{ font: 600 13px 'Segoe UI', Ubuntu, sans-serif; fill: {GREEN}; }}
+    .d {{ font: 400 11px 'Segoe UI', Ubuntu, sans-serif; fill: {DIM}; }}
+  </style>
+  <rect x="0.5" y="0.5" width="{width - 1}" height="{height - 1}" rx="10"
+        fill="{BG}" stroke="{BORDER}" stroke-width="1"/>
+  <text x="22" y="34" class="t">{esc(title)}</text>
+"""
+
+
+def render_languages(langs):
+    """Карточка «Языки» — кольцевая диаграмма и легенда."""
+    width, height = 400, 230
+    total = sum(langs.values()) or 1
+    top = list(langs.items())[:5]
+
+    parts = [frame(width, height, "Языки")]
+
+    # Кольцевая диаграмма
+    cx, cy, r, stroke = 300, 130, 52, 26
+    circumference = 2 * math.pi * r
+    offset = 0.0
+    for index, (lang, size) in enumerate(top):
+        share = size / total
+        color = LANG_COLORS.get(lang, FALLBACK_COLORS[index % len(FALLBACK_COLORS)])
+        dash = share * circumference
+        parts.append(
+            f'  <circle cx="{cx}" cy="{cy}" r="{r}" fill="none" stroke="{color}" '
+            f'stroke-width="{stroke}" stroke-dasharray="{dash:.2f} {circumference - dash:.2f}" '
+            f'stroke-dashoffset="{-offset:.2f}" transform="rotate(-90 {cx} {cy})"/>\n'
+        )
+        offset += dash
+
+    # Легенда
+    y = 78
+    for index, (lang, size) in enumerate(top):
+        share = size / total * 100
+        color = LANG_COLORS.get(lang, FALLBACK_COLORS[index % len(FALLBACK_COLORS)])
+        parts.append(f'  <rect x="22" y="{y - 10}" width="11" height="11" rx="2" fill="{color}"/>\n')
+        parts.append(f'  <text x="42" y="{y}" class="l">{esc(lang)}</text>\n')
+        parts.append(f'  <text x="185" y="{y}" class="v" text-anchor="end">{share:.1f}%</text>\n')
+        y += 26
+
+    parts.append(f'  <text x="22" y="{height - 16}" class="d">по всем репозиториям, включая приватные</text>\n')
+    parts.append("</svg>\n")
+    return "".join(parts)
+
+
+def render_stats(stats):
+    """Карточка «Статистика» — список показателей."""
+    width, height = 400, 230
+    parts = [frame(width, height, "Статистика")]
+
+    y = 78
+    for label, value in stats.items():
+        parts.append(f'  <text x="22" y="{y}" class="l">{esc(label)}</text>\n')
+        parts.append(f'  <text x="{width - 22}" y="{y}" class="v" text-anchor="end">{value}</text>\n')
+        parts.append(
+            f'  <line x1="22" y1="{y + 9}" x2="{width - 22}" y2="{y + 9}" '
+            f'stroke="{BORDER}" stroke-width="1" opacity="0.4"/>\n'
+        )
+        y += 28
+
+    parts.append(f'  <text x="22" y="{height - 16}" class="d">данные обновляются автоматически</text>\n')
+    parts.append("</svg>\n")
+    return "".join(parts)
+
+
+def main():
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    langs = collect_languages()
+    stats = collect_stats()
+
+    (OUT_DIR / "languages.svg").write_text(render_languages(langs), encoding="utf-8")
+    (OUT_DIR / "stats.svg").write_text(render_stats(stats), encoding="utf-8")
+
+    print("Языки:", ", ".join(f"{k} {v}" for k, v in list(langs.items())[:5]))
+    print("Показатели:", stats)
+    print("Готово ->", OUT_DIR)
+
+
+if __name__ == "__main__":
+    main()

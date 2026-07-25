@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="230" viewBox="0 0 400 230" role="img">
+  <style>
+    .t { font: 600 17px 'Segoe UI', Ubuntu, sans-serif; fill: #39ff14; }
+    .l { font: 400 13px 'Segoe UI', Ubuntu, sans-serif; fill: #c9d1d9; }
+    .v { font: 600 13px 'Segoe UI', Ubuntu, sans-serif; fill: #39ff14; }
+    .d { font: 400 11px 'Segoe UI', Ubuntu, sans-serif; fill: #8b949e; }
+  </style>
+  <rect x="0.5" y="0.5" width="399" height="229" rx="10"
+        fill="#0d1117" stroke="#1f6f2f" stroke-width="1"/>
+  <text x="22" y="34" class="t">Языки</text>
+  <circle cx="300" cy="130" r="52" fill="none" stroke="#3572A5" stroke-width="26" stroke-dasharray="217.11 109.61" stroke-dashoffset="-0.00" transform="rotate(-90 300 130)"/>
+  <circle cx="300" cy="130" r="52" fill="none" stroke="#e34c26" stroke-width="26" stroke-dasharray="76.77 249.96" stroke-dashoffset="-217.11" transform="rotate(-90 300 130)"/>
+  <circle cx="300" cy="130" r="52" fill="none" stroke="#f1e05a" stroke-width="26" stroke-dasharray="28.58 298.14" stroke-dashoffset="-293.88" transform="rotate(-90 300 130)"/>
+  <circle cx="300" cy="130" r="52" fill="none" stroke="#5391FE" stroke-width="26" stroke-dasharray="3.31 323.41" stroke-dashoffset="-322.46" transform="rotate(-90 300 130)"/>
+  <circle cx="300" cy="130" r="52" fill="none" stroke="#C1F12E" stroke-width="26" stroke-dasharray="0.95 325.78" stroke-dashoffset="-325.78" transform="rotate(-90 300 130)"/>
+  <rect x="22" y="68" width="11" height="11" rx="2" fill="#3572A5"/>
+  <text x="42" y="78" class="l">Python</text>
+  <text x="185" y="78" class="v" text-anchor="end">66.5%</text>
+  <rect x="22" y="94" width="11" height="11" rx="2" fill="#e34c26"/>
+  <text x="42" y="104" class="l">HTML</text>
+  <text x="185" y="104" class="v" text-anchor="end">23.5%</text>
+  <rect x="22" y="120" width="11" height="11" rx="2" fill="#f1e05a"/>
+  <text x="42" y="130" class="l">JavaScript</text>
+  <text x="185" y="130" class="v" text-anchor="end">8.7%</text>
+  <rect x="22" y="146" width="11" height="11" rx="2" fill="#5391FE"/>
+  <text x="42" y="156" class="l">PowerShell</text>
+  <text x="185" y="156" class="v" text-anchor="end">1.0%</text>
+  <rect x="22" y="172" width="11" height="11" rx="2" fill="#C1F12E"/>
+  <text x="42" y="182" class="l">Batchfile</text>
+  <text x="185" y="182" class="v" text-anchor="end">0.3%</text>
+  <text x="22" y="214" class="d">по всем репозиториям, включая приватные</text>
+</svg>

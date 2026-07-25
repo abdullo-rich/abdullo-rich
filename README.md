@@ -73,12 +73,11 @@
 
 ### `> ЯЗЫКИ`
 
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=abdullo-rich&theme=github_dark&color=39ff14&text_color=c9d1d9&title_color=39ff14" alt="языки по репозиториям" />
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=abdullo-rich&theme=github_dark&color=39ff14&text_color=c9d1d9&title_color=39ff14" alt="языки по коммитам" />
+<img src="./assets/languages.svg" alt="языки" />
+<img src="./assets/stats.svg" alt="статистика" />
 
 <br/><br/>
 
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=abdullo-rich&theme=github_dark&color=39ff14&text_color=c9d1d9&title_color=39ff14&cachebust=2" alt="статистика" />
 <img src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=abdullo-rich&theme=github_dark&color=39ff14&text_color=c9d1d9&title_color=39ff14&utcOffset=3" alt="продуктивное время" />
 
 </div>
