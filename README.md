@@ -78,7 +78,7 @@
 
 <br/><br/>
 
-<img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=abdullo-rich&theme=github_dark&color=39ff14&text_color=c9d1d9&title_color=39ff14" alt="статистика" />
+<img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=abdullo-rich&theme=github_dark&color=39ff14&text_color=c9d1d9&title_color=39ff14&cachebust=2" alt="статистика" />
 <img src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=abdullo-rich&theme=github_dark&color=39ff14&text_color=c9d1d9&title_color=39ff14&utcOffset=3" alt="продуктивное время" />
 
 </div>
