@@ -105,9 +105,8 @@
 
 ### `> СВЯЗЬ`
 
-<!-- Впиши свои ссылки: замени href -->
-<a href="https://t.me/YOUR_TELEGRAM"><img src="https://img.shields.io/badge/Telegram-0d1117?style=for-the-badge&logo=telegram&logoColor=39ff14" alt="telegram" /></a>
-<a href="mailto:YOUR_EMAIL@gmail.com"><img src="https://img.shields.io/badge/Email-0d1117?style=for-the-badge&logo=gmail&logoColor=39ff14" alt="email" /></a>
+<a href="https://t.me/Top_maneger"><img src="https://img.shields.io/badge/Telegram-0d1117?style=for-the-badge&logo=telegram&logoColor=39ff14" alt="telegram" /></a>
+<a href="mailto:azimovabdullo770@gmail.com"><img src="https://img.shields.io/badge/Email-0d1117?style=for-the-badge&logo=gmail&logoColor=39ff14" alt="email" /></a>
 <a href="https://github.com/abdullo-rich"><img src="https://img.shields.io/badge/GitHub-0d1117?style=for-the-badge&logo=github&logoColor=39ff14" alt="github" /></a>
 
 <br/><br/>
